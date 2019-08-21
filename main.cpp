@@ -4,11 +4,11 @@
 
 int main (int, char **)
 {
-    Matrix <2, 2> * m = new Matrix <2, 2> ();
+    Matrix <int, 2, 2> * m = new Matrix <int, 2, 2> ();
 
-    for (size_t i = 0; i < 2; ++i) {
-        for (size_t j = 0; j < 2; ++j) {
-            m->Set (i, j, i * 2 + j);
+    for (size_t i = 0; i < m->Rows (); ++i) {
+        for (size_t j = 0; j < m->Cols (); ++j) {
+            m->Set (i, j, i * m->Cols () + j);
         }
     }
 
