@@ -7,25 +7,19 @@ class Matrix
     public:
         Matrix ()
         {
-            data = new T * [rows];
-            for (size_t i = 0; i < rows; ++i) {
-                data [i] = new T [cols];
-            }
+            data = new T [rows * cols];
         }
 
         ~Matrix ()
         {
-            for (size_t i = 0; i < rows; ++i) {
-                delete [] data [i];
-            }
             delete [] data;
         }
 
         size_t Rows () const {return rows;}
         size_t Cols () const {return cols;}
 
-        T & operator () (size_t r, size_t c) {return data [r][c];}
-        const T & operator () (size_t r, size_t c) const {return data [r][c];}
+        T & operator () (size_t r, size_t c) {return data [r * cols + c];}
+        const T & operator () (size_t r, size_t c) const {return data [r * cols + c];}
 
         template <typename M = Matrix <T, rows, cols> >
         struct iterator : std::iterator <std::input_iterator_tag, T>
@@ -57,7 +51,7 @@ class Matrix
         iterator <> end   () {return iterator <> {* this, rows, 0};}
 
     private:
-        T ** data;
+        T * data;
 };
 
 
