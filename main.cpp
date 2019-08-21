@@ -3,7 +3,7 @@
 
 int main (int, char **)
 {
-    Matrix * m = new Matrix ();
+    Matrix * m = new Matrix (2, 2);
 
     delete m;
 
