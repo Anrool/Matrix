@@ -1,12 +1,11 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
 
+template <size_t rows, size_t cols>
 class Matrix
 {
     public:
-        Matrix (size_t rows, size_t cols)
-            : rows {rows}
-            , cols {cols}
+        Matrix ()
         {
             data = new double * [rows];
             for (size_t i = 0; i < rows; ++i) {
@@ -29,15 +28,13 @@ class Matrix
         void Set (size_t r, size_t c, double v) {data [r][c] = v;}
 
     private:
-        const size_t rows;
-        const size_t cols;
-
         double ** data;
 };
 
 
 
-std::ostream & operator << (std::ostream & os, const Matrix & matrix)
+template <size_t rows, size_t cols>
+std::ostream & operator << (std::ostream & os, const Matrix <rows, cols> & matrix)
 {
     for (size_t i = 0; i < matrix.Rows (); ++i) {
         for (size_t j = 0; j < matrix.Cols (); ++j) {

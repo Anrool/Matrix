@@ -4,7 +4,7 @@
 
 int main (int, char **)
 {
-    Matrix * m = new Matrix (2, 2);
+    Matrix <2, 2> * m = new Matrix <2, 2> ();
 
     for (size_t i = 0; i < 2; ++i) {
         for (size_t j = 0; j < 2; ++j) {
