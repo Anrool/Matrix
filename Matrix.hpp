@@ -53,6 +53,9 @@ class Matrix
             size_t col;
         };
 
+        iterator <> begin () {return iterator <> {* this, 0, 0};}
+        iterator <> end   () {return iterator <> {* this, rows, 0};}
+
     private:
         T ** data;
 };
