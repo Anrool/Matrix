@@ -22,11 +22,30 @@ class Matrix
             delete [] data;
         }
 
+        size_t Rows () const {return rows;}
+        size_t Cols () const {return cols;}
+
+        double Get (size_t r, size_t c) const {return data [r][c];}
+        void Set (size_t r, size_t c, double v) {data [r][c] = v;}
+
     private:
         const size_t rows;
         const size_t cols;
 
         double ** data;
 };
+
+
+
+std::ostream & operator << (std::ostream & os, const Matrix & matrix)
+{
+    for (size_t i = 0; i < matrix.Rows (); ++i) {
+        for (size_t j = 0; j < matrix.Cols (); ++j) {
+            os << matrix.Get (i, j) << " ";
+        }
+        os << std::endl;
+    }
+    return os;
+}
 
 #endif//MATRIX_HPP
