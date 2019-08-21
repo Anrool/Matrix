@@ -27,6 +27,32 @@ class Matrix
         T & operator () (size_t r, size_t c) {return data [r][c];}
         const T & operator () (size_t r, size_t c) const {return data [r][c];}
 
+        template <typename M = Matrix <T, rows, cols> >
+        struct iterator : std::iterator <std::input_iterator_tag, T>
+        {
+            iterator (M & m, size_t row, size_t col)
+                : m {m}
+                , row {row}
+                , col {col}
+            {
+            }
+            ~iterator () = default;
+
+            bool operator == (const iterator & that) {return this->row == that.row && this->col == that.col;}
+            bool operator != (const iterator & that) {return ! operator == (that);}
+            T & operator * () const {return m (row, col);}
+            iterator & operator ++ ()
+            {
+                row += ++col / cols;
+                col  =   col % cols;
+                return * this;
+            }
+
+            M & m;
+            size_t row;
+            size_t col;
+        };
+
     private:
         T ** data;
 };
