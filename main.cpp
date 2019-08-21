@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <algorithm>
 #include "Matrix.hpp"
 
 int main (int, char **)
@@ -11,6 +12,10 @@ int main (int, char **)
             (* m) (i, j) = i * m->Cols () + j;
         }
     }
+
+    std::cout << * m;
+
+    std::replace_if (m->begin (), m->end (), [](const int & v){return v & 1;}, 42);
 
     std::cout << * m;
 
