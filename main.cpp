@@ -8,7 +8,7 @@ int main (int, char **)
 
     for (size_t i = 0; i < m->Rows (); ++i) {
         for (size_t j = 0; j < m->Cols (); ++j) {
-            m->Set (i, j, i * m->Cols () + j);
+            (* m) (i, j) = i * m->Cols () + j;
         }
     }
 

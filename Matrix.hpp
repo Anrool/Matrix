@@ -24,8 +24,8 @@ class Matrix
         size_t Rows () const {return rows;}
         size_t Cols () const {return cols;}
 
-        T Get (size_t r, size_t c) const {return data [r][c];}
-        void Set (size_t r, size_t c, T v) {data [r][c] = v;}
+        T & operator () (size_t r, size_t c) {return data [r][c];}
+        const T & operator () (size_t r, size_t c) const {return data [r][c];}
 
     private:
         T ** data;
@@ -38,7 +38,7 @@ std::ostream & operator << (std::ostream & os, const Matrix <T, rows, cols> & ma
 {
     for (size_t i = 0; i < matrix.Rows (); ++i) {
         for (size_t j = 0; j < matrix.Cols (); ++j) {
-            os << matrix.Get (i, j) << " ";
+            os << matrix (i, j) << " ";
         }
         os << std::endl;
     }
