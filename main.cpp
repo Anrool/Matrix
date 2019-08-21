@@ -19,6 +19,10 @@ int main (int, char **)
 
     std::cout << * m;
 
+    std::transform (m->begin (), m->end (), m->begin (), std::negate<int> () );
+
+    std::cout << * m;
+
     delete m;
 
     return EXIT_SUCCESS;
